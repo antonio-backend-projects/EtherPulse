@@ -1,0 +1,84 @@
+# ---- Python basics
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+.venv/
+venv/
+ENV/
+.envrc
+.python-version
+
+# Build / dist
+build/
+dist/
+wheels/
+*.egg-info/
+*.egg
+.eggs/
+
+# Logs & runtime
+*.log
+logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Coverage / testing
+.coverage
+.coverage.*
+.cache/
+pytestdebug.log
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Type checkers / linters
+.mypy_cache/
+.pyre/
+.pytype/
+ruff_cache/
+
+# IDE / editors
+.vscode/
+.idea/
+*.iml
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Tool configs generated locally
+.cache/
+.pyproj/
+.scratch/
+
+# Env & secrets (keep only examples in repo)
+.env
+.env.*
+!.env.example
+
+# Local data/output
+data/
+*.sqlite3
+*.db
+*.db-journal
+*.sqlite
+
+# Docker / containers (if generated locally)
+docker-compose.override.yml
+*.local.yml
+
+# Node (in case of ancillary UI)
+node_modules/
+*.tsbuildinfo
+
+# Project-specific transient files
+# (remove or comment if you want these tracked)
+tmp/
+tmp_*/
+scratch/

@@ -1,0 +1,75 @@
+symbol: ETHUSDT
+interval: 1m
+lookback_min: 60
+
+# Pivot dinamici
+pivot_mode: floor          # static | floor | donchian
+
+#pivot_mode: donchian
+#thresholds:
+#  donchian_window: 55  # es. 20 più reattivo, 100 più lento
+
+
+levels:                    # fallback usati solo se il calcolo dinamico fallisce
+  pivot_primary: 3980.0
+  pivot_secondary_low: 3860.0
+  pivot_secondary_low2: 3720.0
+  pivot_invalid_up: 4250.0
+
+thresholds:
+  # Funding
+  funding_neutral_max: 0.0        # BEAR solo se funding <= 0
+  funding_bull_min:    0.0003     # BULL solo se >= 0.03%
+
+  # Open Interest
+  oi_drop_pct: 5.0                # drop vs max 7d (BEAR)
+  oi_rise_pct: 5.0                # rise vs min 7d (BULL)
+
+  # Liquidazioni
+  liquidations_usd_15m: 200000000 # $200M in 15m
+
+  # CVD
+  cvd_window_min: 60
+
+  # VWAP
+  vwap_min_distance_pct: 0.30     # ignora segnali se |close-vwap|/vwap < 0.30%
+
+  # Whales fallback (Top Accounts L/S)
+  whales_ratio_min_change_pct: 8.0
+
+  # Affidabilità (confluenze + margini minimi)
+  min_bull_reasons: 3
+  min_bear_reasons: 3
+  margin_buy_min: 25
+  margin_sell_min: 25
+
+  # Conferma breakout (facoltativa)
+  breakout_confirm_candles: 2
+
+  # Donchian (usato solo se pivot_mode: donchian)
+  donchian_window: 55
+
+bear_weights:
+  funding_neutral_or_neg: 10
+  oi_drop: 15
+  liq_spike_mean_revert: 25
+  cvd_negative: 15
+  break_pivot_down: 20
+  whales_net_selling: 10
+  # VWAP
+  vwap_below: 12
+  break_vwap_down: 18
+
+bull_weights:
+  funding_positive: 10
+  oi_rise: 15
+  cvd_positive: 15
+  break_pivot_up: 20
+  whales_net_buying: 10
+  # VWAP
+  vwap_above: 12
+  break_vwap_up: 18
+
+decision:
+  sell_score: 70
+  buy_score: 70

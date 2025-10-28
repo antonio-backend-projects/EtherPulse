@@ -1,0 +1,64 @@
+symbol: ETHUSDT
+interval: 1m
+lookback_min: 60
+
+levels:
+  pivot_primary: 3980.0
+  pivot_secondary_low: 3860.0
+  pivot_secondary_low2: 3720.0
+  pivot_invalid_up: 4250.0
+
+thresholds:
+  # Funding (più permissivo)
+  funding_neutral_max: 0.0         # BEAR solo se funding <= 0
+  funding_bull_min:    0.00015     # BULL se >= 0.015%
+
+  # Open Interest (movimenti moderati)
+  oi_drop_pct: 3.0                 # vs max 7d (BEAR)
+  oi_rise_pct: 3.0                 # vs min 7d (BULL)
+
+  # Liquidazioni (spike moderato)
+  liquidations_usd_15m: 120000000  # $120M in 15m
+
+  # CVD (reattivo ma meno rumoroso del minimo)
+  cvd_window_min: 40
+
+  # VWAP (nuovo, più permissivo)
+  vwap_min_distance_pct: 0.15      # considera segnali se |close-vwap|/vwap >= 0.15%
+
+  # Whales fallback (Top Accounts L/S)
+  whales_ratio_min_change_pct: 5.0
+
+  # Affidabilità (soft)
+  min_bull_reasons: 2
+  min_bear_reasons: 2
+  margin_buy_min: 15
+  margin_sell_min: 15
+
+  # Conferma breakout
+  breakout_confirm_candles: 2
+
+bear_weights:
+  funding_neutral_or_neg: 10
+  oi_drop: 15
+  liq_spike_mean_revert: 25
+  cvd_negative: 15
+  break_pivot_down: 20
+  whales_net_selling: 10
+  # VWAP (nuovi)
+  vwap_below: 12
+  break_vwap_down: 18
+
+bull_weights:
+  funding_positive: 10
+  oi_rise: 15
+  cvd_positive: 15
+  break_pivot_up: 20
+  whales_net_buying: 10
+  # VWAP (nuovi)
+  vwap_above: 12
+  break_vwap_up: 18
+
+decision:
+  sell_score: 60   # più facile arrivarci
+  buy_score: 60    # più facile arrivarci
