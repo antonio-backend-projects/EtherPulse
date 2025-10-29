@@ -1,0 +1,37 @@
+# configs/strategy_momentum.yaml
+pivot_mode: donchian
+thresholds:
+  donchian_window: 20
+  funding_neutral_max: 0.0
+  funding_bull_min: 0.0002
+  oi_drop_pct: 3.0
+  oi_rise_pct: 4.0
+  liquidations_usd_15m: 150000000
+  cvd_window_min: 40
+  vwap_min_distance_pct: 0.20
+  whales_ratio_min_change_pct: 6.0
+  min_bull_reasons: 3
+  min_bear_reasons: 3
+  margin_buy_min: 20
+  margin_sell_min: 20
+  breakout_confirm_candles: 1
+bear_weights:
+  funding_neutral_or_neg: 10
+  oi_drop: 15
+  liq_spike_mean_revert: 25
+  cvd_negative: 15
+  break_pivot_down: 20
+  whales_net_selling: 10
+  vwap_below: 12
+  break_vwap_down: 18
+bull_weights:
+  funding_positive: 10
+  oi_rise: 15
+  cvd_positive: 15
+  break_pivot_up: 20
+  whales_net_buying: 10
+  vwap_above: 12
+  break_vwap_up: 18
+decision:
+  sell_score: 65
+  buy_score: 65
